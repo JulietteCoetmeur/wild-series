@@ -1,0 +1,18 @@
+//Theme colors
+$black: #010600;
+$violet-dark: #5F48F6;
+$violet-medium:#6E53E5;
+$violet-light:#9D9AD3;
+$grey:#ADACBE;
+
+//surcharge some bootstrap colors :
+$primary:       $violet-dark !default;
+$secondary:     $violet-light !default;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+.bg-nav {
+    background-color: $violet-dark;
+
+}
