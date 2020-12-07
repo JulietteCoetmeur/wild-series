@@ -22,4 +22,8 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 .DS_STORE
-/migrations/
+migrations/Version20201127092243.php
+migrations/Version20201130084028.php
+migrations/Version20201204093255.php
+migrations/Version20201204103339.php
+migrations/Version20201204103352.php
