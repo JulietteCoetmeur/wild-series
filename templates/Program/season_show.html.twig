@@ -11,10 +11,10 @@
         <p>Liste des épisodes : </p>
         {% for episode in episodes %}
         <ul>
-            <li><a href="{{ path("program_episode_show", {'programId': program.id, 'seasonId': season.id, 'episodeId': episode.id}) }}">Episode {{episode.number}}: {{episode.title}}</a></li>
+            <li><a href="{{ path("program_episode_show", {'programSlug': program.slug, 'seasonId': season.id, 'episodeSlug': episode.slug}) }}">Episode {{episode.number}}: {{episode.title}}</a></li>
         </ul>
         {% endfor %}
-        <p><a href="{{ path('program_show', {'id': program.id}) }}">
+        <p><a href="{{ path('program_show', {'slug': program.slug}) }}">
             Retour à la série
         </a></p>
     </div>

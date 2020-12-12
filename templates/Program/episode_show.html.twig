@@ -10,7 +10,7 @@
         <h2>Episode {{ episode.number }}: {{ episode.title}}</h2>
         <p>Résumé: </p>
         <p>{{ episode.synopsis }}</p>
-        <p><a href="{{ path("program_season_show", {'program': program.id, 'season': season.id}) }}">
+        <p><a href="{{ path("program_season_show", {'programSlug': program.slug, 'season': season.id}) }}">
             Retour à la saison complète
         </a></p>
     </div>

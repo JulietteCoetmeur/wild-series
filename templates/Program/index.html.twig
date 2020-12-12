@@ -9,7 +9,7 @@
             <h2>{{ loop.index }} / {{ program.title }} - <a href="{{ path("category_show", { categoryName: program.category.name }) }}">Catégorie : {{ program.category.name }}</a></h2>
             <p>{{ program.summary }}</p>
             {# Lien vers la fiche de la série : #}
-            <a href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+            <a href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
         </div>
     {% else %}
         Aucune série trouvée.
