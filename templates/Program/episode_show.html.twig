@@ -10,10 +10,40 @@
         <h2>Episode {{ episode.number }}: {{ episode.title}}</h2>
         <p>Résumé: </p>
         <p>{{ episode.synopsis }}</p>
-        <p><a href="{{ path("program_season_show", {'programSlug': program.slug, 'season': season.id}) }}">
-            Retour à la saison complète
-        </a></p>
+        <p><a href="{{ path("program_season_show", {'programSlug': program.slug, 'season' : season.id}) }}">
+                Retour à la saison complète
+            </a>
+        </p>
     </div>
+</div>
+
+<div class="container-fluid my-2">
+    <h5>Commentaires sur cet épisode </h5>
+    {% if comments == true %}
+    <div class="card" style="width: 35rem;">
+        <ul class="list-group list-group-flush">
+            {% for comment in comments %}
+            <li class="list-group-item m-2">
+                <p>Note {{ comment.rate }}/ 5 - Autheur : {{ comment.author.email }}</p>
+                <p>{{ comment.comment }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<div class="container-fluid my-2">
+    {% if app.user %}
+    <h5>Poster un nouveau commentaire</h5>
+    {{ form_start(form) }}
+    <p>Commentaire :
+        {{ form_widget(form.comment) }}</p>
+    <p>Note (entre 0 et 5) :
+        {{ form_widget(form.rate) }}</p>
+    <button class="btn">{{ button_label|default('Publier') }}</button>
+    {{ form_end(form) }}
+    {% endif %}
 </div>
 
 

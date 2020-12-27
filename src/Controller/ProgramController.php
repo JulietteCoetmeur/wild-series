@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Season;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Service\Slugify;
+use App\Form\CommentType;
 use App\Form\ProgramType;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
@@ -113,18 +115,41 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("{programSlug}/seasons/{seasonId}/episodes/{episodeSlug}", methods={"GET"}, name="episode_show")
+     * @Route("{programSlug}/seasons/{seasonId}/episodes/{episodeSlug}", methods={"GET", "POST"}, name="episode_show")
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"programSlug": "slug"}})
      * @ParamConverter("season", class="App\Entity\Season", options={"mapping": {"seasonId": "id"}})
      * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episodeSlug": "slug"}})
      */
-    public function showEpisode(Program $program, Season $season, Episode $episode)
+    public function showEpisode(Program $program, Season $season, Episode $episode, Request $request)
     {
+        $user = $this->getUser();
+
+        $comment = new Comment();
+        $comment->setAuthor($user);
+        $comment->setEpisode($episode);
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+        }
+
+        $comments = $this->getDoctrine()
+        ->getRepository(Comment::class)
+        ->findBy(
+            ['episode' => $episode], 
+            ['id' => 'DESC'],
+            3
+        );
 
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,
             'season' => $season,
-            'episode' => $episode
+            'episode' => $episode,
+            'comments' => $comments,
+            'form' => $form->createView()
         ]);
     }
 
