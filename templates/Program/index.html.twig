@@ -1,21 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All programs{% endblock %}
+{% block title %}Toutes les séries{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
-    {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }} - <a href="{{ path("category_show", { categoryName: program.category.name }) }}">Catégorie : {{ program.category.name }}</a></h2>
-            <p>{{ program.summary }}</p>
-            {# Lien vers la fiche de la série : #}
-            <a href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
-        </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
+<div class="container my-2">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-lg btn-primary my-2 text-center">Search</button>
+    {{ form_end(form) }}
+</div>
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+<h1 class="text-center">Toutes les séries : </h1>
+<div class="container my-3 d-flex justify-content-center">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Résumé</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for program in programs %} 
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td><a href="{{ path("category_show", { categoryName: program.category.name }) }}">{{ program.category.name }}</a></td>
+            <td><a href="{{ path("program_show", { slug: program.slug }) }}">{{ program.title }}</a></td>
+            <td>{{ program.summary }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="container my-3 d-flex justify-content-center">
+        <a class="btn btn-primary" href="{{ path('app_index') }}" role="button">Retour</a>
+    </div>
+    
 {% endblock %}
