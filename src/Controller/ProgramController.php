@@ -88,6 +88,9 @@ class ProgramController extends AbstractController
 
             $mailer->send($email);
             // Finally redirect to categories list
+
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'The new program has been created');
             return $this->redirectToRoute('program_index');
         }
         // Render the form
@@ -188,6 +191,8 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'The program has been edited');
             return $this->redirectToRoute('program_index');
         }
 
