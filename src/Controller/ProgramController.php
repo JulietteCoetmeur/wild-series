@@ -11,6 +11,7 @@ use App\Form\CommentType;
 use App\Form\ProgramType;
 use Symfony\Component\Mime\Email;
 use App\Form\SearchProgramFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -215,4 +216,27 @@ class ProgramController extends AbstractController
 
         return $this->redirect($request->server->get('HTTP_REFERER'));
     }
+
+    /**
+     * @Route("{id}/watchlist", name="watchlist", methods={"GET","POST"})
+     * @param Request $request
+     * @param Program $program
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function addToWatchlist(Request $request, Program $program, EntityManagerInterface $entityManager): Response
+        {
+            if ($this->getUser()->getWatchlist()->contains($program)) {
+                $this->getUser()->removeWatchlist($program);
+            }
+            else {
+                $this->getUser()->addWatchlist($program);
+            }
+
+            $entityManager->flush();
+
+            return $this->json([
+                'isInWatchlist' => $this->getUser()->isInWatchlist($program)
+            ]);
+        }
 }
