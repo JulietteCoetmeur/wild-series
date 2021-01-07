@@ -6,25 +6,25 @@
 <div class="media">
     <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
     <div class="media-body">
-        <h1 class="mt-0">{{ program.title }} - Saison {{ season.number }} </h1>
-        <h2>Episode {{ episode.number }}: {{ episode.title}}</h2>
-        <p>Résumé: </p>
+        <h1 class="mt-0">{{ program.title }} - {{ 'seasons'|trans }} {{ season.number }} </h1>
+        <h2>{{ 'episod'|trans }} {{ episode.number }}: {{ episode.title}}</h2>
+        <p>{{ 'description'|trans }}: </p>
         <p>{{ episode.synopsis }}</p>
         <p><a href="{{ path("program_season_show", {'programSlug': program.slug, 'season' : season.id}) }}">
-                Retour à la saison complète
+            {{ 'button.back'|trans }}
             </a>
         </p>
     </div>
 </div>
 
 <div class="container-fluid my-2">
-    <h5>Commentaires sur cet épisode </h5>
+    <h5>{% trans %} all_comment {% endtrans %}</h5>
     {% if comments == true %}
     <div class="card" style="width: 35rem;">
         <ul class="list-group list-group-flush">
             {% for comment in comments %}
             <li class="list-group-item m-2">
-                <p>Note {{ comment.rate }}/ 5 - Autheur : {{ comment.author.email }}</p>
+                <p>{{ 'grade'|trans }} {{ comment.rate }}/ 5 - {{ 'author'|trans }} : {{ comment.author.email }}</p>
                 <p>{{ comment.comment }}</p>
                 {% if app.user %}
                     {% if is_granted("ROLE_ADMIN") or app.user.email == comment.author.email %}
@@ -40,13 +40,13 @@
 
 <div class="container-fluid my-2">
     {% if app.user %}
-    <h5>Poster un nouveau commentaire</h5>
+    <h5>{% trans %} new_comment {% endtrans %}</h5>
     {{ form_start(form) }}
-    <p>Commentaire :
+    <p>{{ 'comment'|trans }} :
         {{ form_widget(form.comment) }}</p>
-    <p>Note (entre 0 et 5) :
+    <p>{{ 'grade'|trans }} :
         {{ form_widget(form.rate) }}</p>
-    <button class="btn">{{ button_label|default('Publier') }}</button>
+    <button class="btn">{{ 'button.publish'|trans }}</button>
     {{ form_end(form) }}
     {% endif %}
 </div>

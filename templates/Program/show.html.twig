@@ -14,30 +14,30 @@
     {% endif %}
 
     <p>{{ program.summary }}</p>
-    <p>Catégorie : {{ program.category.name }}</p>
-    <p>Saisons : </p>
+    <p>{{ 'category'|trans }} : {{ program.category.name }}</p>
+    <p>{{ 'seasons'|trans }} : </p>
     {% for season in seasons %}
     <ul>
       <li><a href="{{ path("program_season_show", {'programSlug': program.slug, 'season': season.id}) }}">Numéro
           {{season.number}} ({{season.year}})</a></li>
     </ul>
     {% endfor %}
-    <strong>Acteurs :</strong>
+    <strong>{{ 'actors'|trans }} :</strong>
     <ul>
       {% for actor in program.actors %}
       <li><a href="{{ path("actor_show", { 'id': actor.id }) }}">{{ actor.name }}</a></li>
       {% else %}
-      <li>Aucun acteur pour cette série</li>
+      <li>{% trans %} no_actor {% endtrans %}</li>
       {% endfor %}
     </ul>
     {% if is_granted("ROLE_ADMIN") %}
-    <a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+    <a href="{{ path('program_edit', { 'slug': program.slug} ) }}">{{ 'button.edit'|trans }}</a>
     {% endif %}
   </div>
 </div>
 
 <a href="{{ path('program_index') }}">
-  Retour à la liste des programmes
+  {{ 'button.back'|trans }}
 </a>
 
 {% endblock %}

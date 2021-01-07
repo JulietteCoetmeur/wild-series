@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes les séries{% endblock %}
+{% block title %}{% trans %} all_programs {% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container my-2">
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn btn-lg btn-primary my-2 text-center">Search</button>
+    <button type="submit" class="btn btn-lg btn-primary my-2 text-center">{{ 'button.search'|trans }}</button>
     {{ form_end(form) }}
 </div>
 
-<h1 class="text-center">Toutes les séries : </h1>
+<h1 class="text-center">{% trans %} all_programs {% endtrans %} : </h1>
 <div class="container my-3 d-flex justify-content-center">
     <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Catégorie</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Résumé</th>
+            <th scope="col">{{ 'category'|trans }}</th>
+            <th scope="col">{{ 'title'|trans }}</th>
+            <th scope="col">{{ 'description'|trans }}</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
       </table>
     </div>
     <div class="container my-3 d-flex justify-content-center">
-        <a class="btn btn-primary" href="{{ path('app_index') }}" role="button">Retour</a>
+        <a class="btn btn-primary" href="{{ path('app_index') }}" role="button">{{ 'button.back'|trans }}</a>
     </div>
     
 {% endblock %}

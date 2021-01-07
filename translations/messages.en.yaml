@@ -1,0 +1,29 @@
+hello_username: Hello %username%
+account.logout: Logout
+account.login: Login
+account.language_choice: Language
+account.french: French
+account.english: English
+account.home: Home
+account.programs: Programs
+hello_user: Welcome on Wild Séries
+last_programs: Latest programs published on the website
+all_programs: All programs
+category: Category
+title: Title
+description: Description
+seasons: Seasons
+actors: Actors
+episod: Episod
+button.back: Back
+button.search: Search
+button.edit: Edit
+button.publish: Publish
+button.delete: Delete
+no_actor: There is no actor for this program
+episod_list: All episods
+new_comment: Post a new comment
+all_comment: All comments on this episod
+comment: Comment
+grade: Grade
+author: Author

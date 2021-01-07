@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
-{% block title %}Catégorie #{{ category.id }}{% endblock %}
+{% block title %}{{ 'category'|trans }} #{{ category.id }}{% endblock %}
 
 {% block body %}
 
 <h1 class="mt-0">{{ category.name }}</h1>
-<h2>3 dernières séries associées :</h2>
+<h2>{% trans %} last_programs {% endtrans %}</h2>
 {% for program in programs %}
         <div> 
             <a href="{{ path("program_show", { id: program.id }) }}"><h2>{{ loop.index }} / {{ program.title }} - ID : {{ program.id }}</h2></a>
@@ -15,7 +15,7 @@
     {% endfor %}
 
 <a href="{{ path('category_index') }}">
-    Retour à la liste des categories
+    {{ 'button.back'|trans }}
 </a>
 
 {% endblock %}

@@ -1,0 +1,30 @@
+hello_username: Salut %username%
+account.logout: Se déconnecter
+account.login: Se connecter
+account.language_choice: Langue
+account.french: Français
+account.english: Anglais
+account.home: Accueil
+account.programs: Série
+hello_user: Bienvenue sur Wild Séries
+last_programs: Les dernières séries publiées
+all_programs: Toutes les séries
+category: Catégorie
+title: Titre
+description: Résumé
+seasons: Saisons
+actors: Acteurs
+episod: Episode
+button.back: Retour
+button.search: Rechercher
+button.edit: Editer
+button.publish: Publier
+button.delete: Supprimer
+no_actor: Il n'y a pas d'acteur pour cette série
+episod_list: Liste des épisodes 
+new_comment: Poster un nouveau commentaire
+all_comment: Tous les commentaires sur cet épisode
+comment: Commentaire
+grade: Note
+author: Auteur
+

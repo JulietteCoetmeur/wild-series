@@ -3,8 +3,8 @@
 {% block body %}
 
 <div class="container m-5 ">
-    <h1>Bienvenue sur Wild Séries</h1>
-    <h2>Les dernières séries publiées</h2>
+    <h1>{% trans %} hello_user {% endtrans %} !</h1>
+    <h2>{% trans %} last_programs {% endtrans %}</h2>
     {% for program in programs %}
     <ul>
         <li><a href="{{ path("program_show", { slug: program.slug }) }}">{{ program.title }}</a></li>

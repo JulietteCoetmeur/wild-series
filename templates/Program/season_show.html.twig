@@ -6,16 +6,16 @@
 <div class="media">
     <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
     <div class="media-body">
-        <h1 class="mt-0">Saison {{season.number}} de {{ program.title }}</h1>
+        <h1 class="mt-0">{{ 'seasons'|trans }} {{season.number}} - {{ program.title }}</h1>
         <p>{{ season.description }}</p>
-        <p>Liste des épisodes : </p>
+        <p>{% trans %} episod_list {% endtrans %} : </p>
         {% for episode in episodes %}
         <ul>
             <li><a href="{{ path("program_episode_show", {'programSlug': program.slug, 'seasonId': season.id, 'episodeSlug': episode.slug}) }}">Episode {{episode.number}}: {{episode.title}}</a></li>
         </ul>
         {% endfor %}
         <p><a href="{{ path('program_show', {'slug': program.slug}) }}">
-            Retour à la série
+            {{ 'button.back'|trans }}
         </a></p>
     </div>
 </div>
