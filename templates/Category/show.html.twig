@@ -7,7 +7,7 @@
 <h2>{% trans %} last_programs {% endtrans %}</h2>
 {% for program in programs %}
         <div> 
-            <a href="{{ path("program_show", { id: program.id }) }}"><h2>{{ loop.index }} / {{ program.title }} - ID : {{ program.id }}</h2></a>
+            <a href="{{ path("program_show", { slug: program.slug }) }}"><h2>{{ loop.index }} / {{ program.title }} - ID : {{ program.id }}</h2></a>
             <p>{{ program.summary }}</p>
         </div>
     {% else %}
