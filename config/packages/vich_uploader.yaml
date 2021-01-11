@@ -1,0 +1,16 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+       poster_file:
+           uri_prefix: /images/posters
+           upload_destination: '%upload_directory%'
+           namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug' }
+       actor_file:
+           uri_prefix: /images/actors
+           upload_destination: '%upload_directory%'
+           namer:
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug' }

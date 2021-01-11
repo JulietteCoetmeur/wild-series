@@ -3,7 +3,9 @@
 
 {% block body %}
 
-<div class="container">
+<div class="media">
+  <img class="align-self-start mr-3" src="/uploads/{{actor.image}}" alt="{{ actor.name }} photor">
+  <div class="media-body">
     <h1 class="mt-0">{{actor.name}}</h1>
     <h2>Séries dans lesquelles il/elle joue :</h2>
     {% for program in programs %}
